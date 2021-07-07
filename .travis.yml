@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t tutus/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true tutus/react-test npm test 
+
+after_success:
+  - docker build -t tutus/multi-client ./client
+  - docker build -t tutus/multi-nginx ./nginx
+  - docker build -t tutus/multi-server ./server
+  - docker build -t tutus/multi-worker ./worker
+  #login to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  #take and push to docker hub
+  - docker push -t tutus/multi-client
+  - docker push -t tutus/multi-nginx
+  - docker push -t tutus/multi-server
+  - docker push -t tutus/multi-worker
