@@ -16,7 +16,7 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   #take and push to docker hub
-  - docker push -t tutus/multi-client
-  - docker push -t tutus/multi-nginx
-  - docker push -t tutus/multi-server
-  - docker push -t tutus/multi-worker
+  - docker push tutus/multi-client
+  - docker push tutus/multi-nginx
+  - docker push tutus/multi-server
+  - docker push  tutus/multi-worker
