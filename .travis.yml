@@ -2,21 +2,21 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t tutus/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t jackson3232/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true tutus/react-test npm test 
+  - docker run -e CI=true jackson3232/react-test npm test 
 
 after_success:
-  - docker build -t tutus/multi-client ./client
-  - docker build -t tutus/multi-nginx ./nginx
-  - docker build -t tutus/multi-server ./server
-  - docker build -t tutus/multi-worker ./worker
+  - docker build -t jackson3232/multi-client ./client
+  - docker build -t jackson3232/multi-nginx ./nginx
+  - docker build -t jackson3232/multi-server ./server
+  - docker build -t jackson3232/multi-worker ./worker
   #login to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   #take and push to docker hub
-  - docker push tutus/multi-client
-  - docker push tutus/multi-nginx
-  - docker push tutus/multi-server
-  - docker push  tutus/multi-worker
+  - docker push jackson3232/multi-client
+  - docker push jackson3232/multi-nginx
+  - docker push jackson3232/multi-server
+  - docker push jackson3232/multi-worker
