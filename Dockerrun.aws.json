@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitons": [
+        {
+            "name": "client",
+            "image": "jackson3232/multi-client",
+            "hostname": "client",
+            "essential": "false"
+        },
+        {
+            "name": "server",
+            "image": "jackson3232/multi-server",
+            "hostname": "api",
+            "essential": "false"
+        },
+        {
+            "name": "worker",
+            "image": "jackson3232/multi-worker",
+            "hostname": "workder",
+            "essential": "false"
+        },
+        {
+            "name": "nginx",
+            "image": "jackson3232/multi-nginx",
+            "hostname": "nginx",
+            "essential": "true",
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client","server"]
+        }
+    ]
+}
