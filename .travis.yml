@@ -12,7 +12,7 @@ after_success:
   - docker build -t jackson3232/multi-nginx ./nginx
   - docker build -t jackson3232/multi-server ./server
   - docker build -t jackson3232/multi-worker ./worker
-  #login to docker3 clid22s2
+  #login to docker3 clid22s22
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   #take and  push to docker hub
